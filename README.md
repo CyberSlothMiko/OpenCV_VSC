@@ -44,7 +44,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Visual Step Counter][product-video]](https://github.com/cyberslothmiko/VSC)
+https://user-images.githubusercontent.com/44743723/166340796-f74d44cb-e286-45b2-bf05-8638ddfe6f60.mp4
+
 
 I looked at my phone, saw the step counter and questioned its accuracy. Yep...thats it, thats how this project came to be. The goal of this project was to be able to visually track the steps of a person using computer vision to accuratly determine how many steps the person did.
 
@@ -133,9 +134,3 @@ Source of the example videos included
 * [Running Footage](https://www.youtube.com/watch?v=yzc-qsGEoB0)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[product-video]: images/Example.mp4
