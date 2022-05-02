@@ -92,7 +92,7 @@ Python3
    cd VSC
    ```
 3. Run the included python env setup script
-   ```js
+   ```sh
    ./build.sh
    ```
 
@@ -106,11 +106,11 @@ Python3
 After following the insillation instructions above, you can run the below command to view some examples
 
 1. Walking example
-   ```js
+   ```sh
    ./run.sh walking
    ```
 2. Running example
-   ```js
+   ```sh
    ./run.sh running
    ```
 
