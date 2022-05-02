@@ -84,15 +84,15 @@ Python3
 ### Installation
 
 1. Clone the repo
-   ```sh
+   ```bash
    git clone https://github.com/cyberslothmiko/VSC.git
    ```
 2. Change into VSC directory
-   ```sh
+   ```bash
    cd VSC
    ```
 3. Run the included python env setup script
-   ```sh
+   ```bash
    ./build.sh
    ```
 
@@ -106,11 +106,11 @@ Python3
 After following the insillation instructions above, you can run the below command to view some examples
 
 1. Walking example
-   ```sh
+   ```bash
    ./run.sh walking
    ```
 2. Running example
-   ```sh
+   ```bash
    ./run.sh running
    ```
 
