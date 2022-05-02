@@ -40,18 +40,23 @@
 </details>
 
 
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-![](images/Example.gif)
 
 I looked at my phone, saw the step counter and questioned its accuracy. Yep...thats it, thats how this project came to be. The goal of this project was to be able to visually track the steps of a person using computer vision to accuratly determine how many steps the person did.
 
 The way the steps are counter is by watching the knee joints of the opencv frame and determining when they cross, this counting as "a step". This proved to be more reliable then loooking at the feet positions of the frame (although still not perfect as the frame sometimes resets randomly)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+## Example Video
 
+![](images/Example.gif)
+
+## Example Output
+<div align="center">
+  <img src="images/Output.png" alt="Logo" width="448" height="147">
+</div>
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 ### Built With
@@ -62,7 +67,6 @@ The way the steps are counter is by watching the knee joints of the opencv frame
 * [Bash](https://www.gnu.org/software/bash/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- GETTING STARTED -->
@@ -99,7 +103,6 @@ Python3
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
 <!-- USAGE EXAMPLES -->
 ## Usage
 
@@ -117,14 +120,12 @@ After following the insillation instructions above, you can run the below comman
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- ACKNOWLEDGMENTS -->
