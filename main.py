@@ -5,6 +5,8 @@ import mediapipe as mp
 import math
 import sys
 
+videotype = sys.argv[1]
+
 counterval = 0
 counterval2 = 2
 
@@ -37,7 +39,7 @@ def livekneepos(results, mp_pose, image_width,image_height,leg):
     print("No idea how you got here haha!")
 
 def webcam():
-    cap = cv2.VideoCapture('Video/running.mp4')
+    cap = cv2.VideoCapture('Video/'+videotype+'.mp4')
     with mp_pose.Pose(
         min_detection_confidence=0.8,
         min_tracking_confidence=0.8) as pose:
