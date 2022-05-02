@@ -44,8 +44,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-https://user-images.githubusercontent.com/44743723/166340796-f74d44cb-e286-45b2-bf05-8638ddfe6f60.mp4
-
+![](images/Example.gif)
 
 I looked at my phone, saw the step counter and questioned its accuracy. Yep...thats it, thats how this project came to be. The goal of this project was to be able to visually track the steps of a person using computer vision to accuratly determine how many steps the person did.
 
@@ -57,7 +56,6 @@ I looked at my phone, saw the step counter and questioned its accuracy. Yep...th
 
 * [Python](https://www.python.org/)
 * [OpenCV](https://opencv.org/)
-* [Mediapipe](https://google.github.io/mediapipe/)
 * [Matplotlib](https://matplotlib.org/)
 * [Bash](https://www.gnu.org/software/bash/)
 
