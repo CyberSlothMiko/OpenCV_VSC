@@ -44,7 +44,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![](images/Example.gif)
+<center>![](images/Example.gif)</center>
 
 I looked at my phone, saw the step counter and questioned its accuracy. Yep...thats it, thats how this project came to be. The goal of this project was to be able to visually track the steps of a person using computer vision to accuratly determine how many steps the person did.
 
