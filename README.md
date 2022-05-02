@@ -107,11 +107,11 @@ After following the insillation instructions above, you can run the below comman
 
 1. Walking example
    ```js
-   ./run.sh
+   ./run.sh walking
    ```
 2. Running example
    ```js
-   ./run.sh
+   ./run.sh running
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
