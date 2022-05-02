@@ -57,6 +57,7 @@ I looked at my phone, saw the step counter and questioned its accuracy. Yep...th
 
 * [Python](https://www.python.org/)
 * [OpenCV](https://opencv.org/)
+* [Mediapipe](https://google.github.io/mediapipe/)
 * [Matplotlib](https://matplotlib.org/)
 * [Bash](https://www.gnu.org/software/bash/)
 
