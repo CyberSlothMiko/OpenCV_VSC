@@ -48,6 +48,8 @@
 
 I looked at my phone, saw the step counter and questioned its accuracy. Yep...thats it, thats how this project came to be. The goal of this project was to be able to visually track the steps of a person using computer vision to accuratly determine how many steps the person did.
 
+The way the steps are counter is by watching the knee joints of the opencv frame and determining when they cross, this counting as "a step". This proved to be more reliable then loooking at the feet positions of the frame (although still not perfect as the frame sometimes resets randomly)
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
