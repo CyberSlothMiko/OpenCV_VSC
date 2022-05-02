@@ -138,4 +138,4 @@ Source of the example videos included
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[product-screenshot]: images/Example.webm
+[product-video]: images/Example.webm
