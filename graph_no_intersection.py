@@ -1,11 +1,7 @@
-from cgi import test
-import re
 import matplotlib.pyplot as plt
-import numpy as np
 from shapely.geometry import LineString
 import matplotlib.animation as animation
 from matplotlib import style
-import shutil
 
 style.use('fivethirtyeight')
 
@@ -38,7 +34,6 @@ def animate(i):
     ax1.clear()
     ax1.plot(xs, ys)
     ax1.plot(xxs, yys)
-
 
 ani = animation.FuncAnimation(fig, animate, interval=1000)
 plt.show()

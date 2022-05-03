@@ -50,8 +50,6 @@ def webcam():
                 # If loading a video, use 'break' instead of 'continue'.
                 break
 
-            # To improve performance, optionally mark the image as not writeable to
-            # pass by reference.
             image.flags.writeable = False
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             results = pose.process(image)
@@ -70,8 +68,6 @@ def webcam():
                 o.write(leftleg)
                 o.write("\n")
 
-            #printlivedata(results, mp_pose, image_width, image_height)
-            
             # Draw the pose annotation on the image.
             image.flags.writeable = True
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
@@ -81,7 +77,7 @@ def webcam():
                 mp_pose.POSE_CONNECTIONS,
                 landmark_drawing_spec=mp_drawing_styles.get_default_pose_landmarks_style())
             # Flip the image horizontally for a selfie-view display.
-            cv2.imshow('MediaPipe Pose', image) # Flip Image:     cv2.flip(image, 1)
+            cv2.imshow('MediaPipe Pose', image)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
     cap.release()
@@ -98,7 +94,6 @@ def exiting():
     multiline_string = (f"============================\n\n"
                         f"Total steps counted: {steps}\n\n"
                         f"============================")
-
     print(multiline_string)
 
 
