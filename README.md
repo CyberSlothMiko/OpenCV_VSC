@@ -51,7 +51,7 @@ The way the steps are counter is by watching the knee joints of the opencv frame
 
 ![](images/Example.gif)
 
-## Example Output
+<div align="center">Example Output</div>
 <div align="center">
   <img src="images/Output.png" alt="Logo" width="448" height="147">
 </div>
