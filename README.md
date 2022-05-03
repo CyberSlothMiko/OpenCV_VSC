@@ -106,7 +106,7 @@ Python3
 
 After following the insillation instructions above, you can run the below command to view some examples
 
-To exit the program gracefully, wait for the video to finish or press "q" on the "MediaPipe Pose" window. (If you only press q on the Graph window, the step count will be innacurate as the video will continue to play)
+To exit the program gracefully, wait for the video to finish or press `q` on the "MediaPipe Pose" window. (If you only press q on the Graph window, the step count will be innacurate as the video will continue to play)
 
 1. Walking example
    ```bash
@@ -123,7 +123,7 @@ To exit the program gracefully, wait for the video to finish or press "q" on the
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
