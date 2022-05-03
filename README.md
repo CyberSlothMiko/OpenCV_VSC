@@ -6,9 +6,6 @@
   <a href="https://github.com/cyberslothmiko/VSC">
     <img src="images/Logo.png" alt="Logo" width="200" height="99">
   </a>
-
-<h3 align="center">VSC</h3>
-
   <p align="center">
     Utalizing OpenCV to visually count steps.
   </p>
