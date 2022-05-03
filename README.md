@@ -47,11 +47,12 @@ I looked at my phone, saw the step counter and questioned its accuracy. Yep...th
 
 The way the steps are counter is by watching the knee joints of the opencv frame and determining when they cross, this counting as "a step". This proved to be more reliable then loooking at the feet positions of the frame (although still not perfect as the frame sometimes resets randomly)
 
-## Example Video
+<div align="center"><h3>Example Video</h3></div>
+<div align="center">
 
 ![](images/Example.gif)
-
-<div align="center">Example Output</div>
+</div>
+<div align="center"><h3>Example Output</h3></div>
 <div align="center">
   <img src="images/Output.png" alt="Logo" width="448" height="147">
 </div>
