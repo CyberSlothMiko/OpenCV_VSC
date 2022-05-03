@@ -60,7 +60,7 @@ The way the steps are counter is by watching the knee joints of the opencv frame
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-### Built With
+## Built With
 
 * [Python](https://www.python.org/)
 * [OpenCV](https://opencv.org/)
