@@ -87,7 +87,7 @@ Python3
 
 1. Clone the repo
    ```bash
-   git clone https://github.com/cyberslothmiko/VSC.git
+   git clone https://github.com/cyberslothmiko/OpenCV_VSC.git
    ```
 2. Change into VSC directory
    ```bash
