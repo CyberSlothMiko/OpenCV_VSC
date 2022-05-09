@@ -11,6 +11,7 @@ class LEGS(enum.Enum):
     LEFT = 0
     RIGHT = 1
 
+
 # Global Constants
 VIDEO_TYPE = sys.argv[1]
 LEFTLEG_FILE = "leftleg.csv"
@@ -23,15 +24,17 @@ mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
 
+
 def printlivedata(results, mp_pose, image_width, image_height):
-  print(
-    f'Right Knee coordinates: ('
-    f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.RIGHT_KNEE].x * image_width}, '
-    f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.RIGHT_KNEE].y * image_height})'
-    f'Left Knee coordinates: ('
-    f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.LEFT_KNEE].x * image_width}, '
-    f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.LEFT_KNEE].y * image_height})'
-)
+    print(
+        f'Right Knee coordinates: ('
+        f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.RIGHT_KNEE].x * image_width}, '
+        f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.RIGHT_KNEE].y * image_height})'
+        f'Left Knee coordinates: ('
+        f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.LEFT_KNEE].x * image_width}, '
+        f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.LEFT_KNEE].y * image_height})'
+    )
+
 
 def livekneepos(results, mp_pose, image_width, image_height):
     global counter
@@ -46,11 +49,12 @@ def livekneepos(results, mp_pose, image_width, image_height):
     counter += 1
     return positions
 
+
 def webcam():
     cap = cv2.VideoCapture('Video/'+VIDEO_TYPE+'.mp4')
     with mp_pose.Pose(
-        min_detection_confidence=0.8,
-        min_tracking_confidence=0.8) as pose:
+            min_detection_confidence=0.8,
+            min_tracking_confidence=0.8) as pose:
         while cap.isOpened():
             success, image = cap.read()
 
@@ -91,8 +95,10 @@ def webcam():
     cap.release()
     exiting()
 
+
 def graph():
     os.system('python graph_with_intersection.py')
+
 
 def exiting():
     if os.path.isfile(LEFTLEG_FILE):
@@ -109,7 +115,7 @@ def exiting():
         print(multiline_string)
 
 
-if __name__ == '__main__': # Boilerplate
+if __name__ == '__main__':  # Boilerplate
     try:
         sys.tracebacklimit = 0
         thread1 = threading.Thread(target=graph)
