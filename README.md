@@ -89,9 +89,9 @@ Python3
    ```bash
    git clone https://github.com/cyberslothmiko/OpenCV_VSC.git
    ```
-2. Change into VSC directory
+2. Change into OpenCV_VSC directory
    ```bash
-   cd VSC
+   cd OpenCV_VSC
    ```
 3. Run the included python env setup script
    ```bash
