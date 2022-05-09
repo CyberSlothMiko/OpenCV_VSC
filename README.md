@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/cyberslothmiko/VSC">
+  <a href="https://github.com/cyberslothmiko/OpenCV_VSC">
     <img src="images/Logo.png" alt="Logo" width="200" height="99">
   </a>
   <p align="center">
