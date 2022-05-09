@@ -4,9 +4,20 @@ import os
 import mediapipe as mp
 import math
 import sys
+import enum
 
-videotype = sys.argv[1]
 
+class LEGS(enum.Enum):
+    LEFT = 0
+    RIGHT = 1
+
+# Global Constants
+VIDEO_TYPE = sys.argv[1]
+LEFTLEG_FILE = "leftleg.csv"
+RIGHTLEG_FILE = "rightleg.csv"
+STEPS_FILE = "steps.txt"
+
+# Global Variables
 counterval = 0
 counterval2 = 2
 
@@ -61,10 +72,10 @@ def webcam():
             rightleg = livekneepos(results, mp_pose, image_width, image_height,"r")
             leftleg = livekneepos(results, mp_pose, image_width, image_height, "l")
 
-            with open("rightleg.csv", "a") as o:
+            with open(RIGHTLEG_FILE, "a") as o:
                 o.write(rightleg)
                 o.write("\n")
-            with open("leftleg.csv", "a") as o:
+            with open(LEFTLEG_FILE, "a") as o:
                 o.write(leftleg)
                 o.write("\n")
 
@@ -87,14 +98,18 @@ def graph():
     os.system('python graph_with_intersection.py')
 
 def exiting():
-    os.remove("leftleg.csv")
-    os.remove("rightleg.csv")
-    steps = open('steps.txt','r').read().strip()
-    os.remove("steps.txt")
-    multiline_string = (f"============================\n\n"
-                        f"Total steps counted: {steps}\n\n"
-                        f"============================")
-    print(multiline_string)
+    if os.path.isfile(LEFTLEG_FILE):
+        os.remove(LEFTLEG_FILE)
+    if os.path.isfile(RIGHTLEG_FILE):
+        os.remove(RIGHTLEG_FILE)
+    if os.path.isfile(STEPS_FILE):
+        steps = open(STEPS_FILE, 'r').read().strip()
+        os.remove(STEPS_FILE)
+
+        multiline_string = (f"============================\n\n"
+                            f"Total steps counted: {steps}\n\n"
+                            f"============================")
+        print(multiline_string)
 
 
 if __name__ == '__main__': # Boilerplate
