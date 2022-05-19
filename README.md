@@ -134,5 +134,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Source of the example videos included
 * [Walking Footage](https://www.youtube.com/watch?v=tBNqEwcvYjU)
 * [Running Footage](https://www.youtube.com/watch?v=yzc-qsGEoB0)
+* [Bug fix & Code Cleanup](https://github.com/akirarhodes/) 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
