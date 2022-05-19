@@ -4,45 +4,57 @@ import os
 import mediapipe as mp
 import math
 import sys
+import enum
 
-videotype = sys.argv[1]
 
-counterval = 0
-counterval2 = 2
+class LEGS(enum.Enum):
+    LEFT = 0
+    RIGHT = 1
 
+
+# Global Constants
+VIDEO_TYPE = sys.argv[1]
+LEFTLEG_FILE = "leftleg.csv"
+RIGHTLEG_FILE = "rightleg.csv"
+STEPS_FILE = "steps.txt"
+
+# Global Variables
+counter = 0
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
 
-def printlivedata(results, mp_pose, image_width, image_height):
-  print(
-    f'Right Knee coordinates: ('
-    f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.RIGHT_KNEE].x * image_width}, '
-    f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.RIGHT_KNEE].y * image_height})'
-    f'Left Knee coordinates: ('
-    f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.LEFT_KNEE].x * image_width}, '
-    f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.LEFT_KNEE].y * image_height})'
-)
 
-def livekneepos(results, mp_pose, image_width,image_height,leg):
-  if (leg == "r"):
-    global counterval
-    counterval += 1
-    rightkneexypos = ((str(counterval)) + ',' + (str(f'{math.trunc(results.pose_landmarks.landmark[mp_pose.PoseLandmark.RIGHT_KNEE].x * image_height)}')))
-    return rightkneexypos
-  elif (leg == "l"):
-    global counterval2
-    counterval2 += 1
-    leftkneexypos = ((str(counterval2)) + ',' + (str(f'{math.trunc(results.pose_landmarks.landmark[mp_pose.PoseLandmark.LEFT_KNEE].x * image_height)}')))
-    return leftkneexypos
-  else:
-    print("No idea how you got here haha!")
+def printlivedata(results, mp_pose, image_width, image_height):
+    print(
+        f'Right Knee coordinates: ('
+        f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.RIGHT_KNEE].x * image_width}, '
+        f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.RIGHT_KNEE].y * image_height})'
+        f'Left Knee coordinates: ('
+        f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.LEFT_KNEE].x * image_width}, '
+        f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.LEFT_KNEE].y * image_height})'
+    )
+
+
+def livekneepos(results, mp_pose, image_width, image_height):
+    global counter
+    positions = dict()
+
+    positions[LEGS.RIGHT] = ((str(counter)) + ',' + (str(
+        f'{math.trunc(results.pose_landmarks.landmark[mp_pose.PoseLandmark.RIGHT_KNEE].x * image_height)}')))
+
+    positions[LEGS.LEFT] = ((str(counter)) + ',' + (str(
+        f'{math.trunc(results.pose_landmarks.landmark[mp_pose.PoseLandmark.LEFT_KNEE].x * image_height)}')))
+
+    counter += 1
+    return positions
+
 
 def webcam():
-    cap = cv2.VideoCapture('Video/'+videotype+'.mp4')
+    cap = cv2.VideoCapture('Video/'+VIDEO_TYPE+'.mp4')
     with mp_pose.Pose(
-        min_detection_confidence=0.8,
-        min_tracking_confidence=0.8) as pose:
+            min_detection_confidence=0.8,
+            min_tracking_confidence=0.8) as pose:
         while cap.isOpened():
             success, image = cap.read()
 
@@ -58,14 +70,14 @@ def webcam():
             if not results.pose_landmarks:
                 continue
 
-            rightleg = livekneepos(results, mp_pose, image_width, image_height,"r")
-            leftleg = livekneepos(results, mp_pose, image_width, image_height, "l")
+            knee_positions = livekneepos(
+                results, mp_pose, image_width, image_height)
 
-            with open("rightleg.csv", "a") as o:
-                o.write(rightleg)
+            with open(RIGHTLEG_FILE, "a") as o:
+                o.write(knee_positions[LEGS.RIGHT])
                 o.write("\n")
-            with open("leftleg.csv", "a") as o:
-                o.write(leftleg)
+            with open(LEFTLEG_FILE, "a") as o:
+                o.write(knee_positions[LEGS.LEFT])
                 o.write("\n")
 
             # Draw the pose annotation on the image.
@@ -83,21 +95,27 @@ def webcam():
     cap.release()
     exiting()
 
+
 def graph():
     os.system('python graph_with_intersection.py')
 
+
 def exiting():
-    os.remove("leftleg.csv")
-    os.remove("rightleg.csv")
-    steps = open('steps.txt','r').read().strip()
-    os.remove("steps.txt")
-    multiline_string = (f"============================\n\n"
-                        f"Total steps counted: {steps}\n\n"
-                        f"============================")
-    print(multiline_string)
+    if os.path.isfile(LEFTLEG_FILE):
+        os.remove(LEFTLEG_FILE)
+    if os.path.isfile(RIGHTLEG_FILE):
+        os.remove(RIGHTLEG_FILE)
+    if os.path.isfile(STEPS_FILE):
+        steps = open(STEPS_FILE, 'r').read().strip()
+        os.remove(STEPS_FILE)
+
+        multiline_string = (f"============================\n\n"
+                            f"Total steps counted: {steps}\n\n"
+                            f"============================")
+        print(multiline_string)
 
 
-if __name__ == '__main__': # Boilerplate
+if __name__ == '__main__':  # Boilerplate
     try:
         sys.tracebacklimit = 0
         thread1 = threading.Thread(target=graph)

@@ -1,5 +1,5 @@
 import numpy as np
-from shapely.geometry import LineString
+from shapely.geometry import LineString, Point, MultiPoint
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from matplotlib import style
@@ -9,14 +9,15 @@ import sys
 plt.rcParams['toolbar'] = 'None'
 style.use('fivethirtyeight')
 fig = plt.figure()
-ax1 = fig.add_subplot(1,1,1)
+ax1 = fig.add_subplot(1, 1, 1)
 
 time.sleep(1)
 
+
 def animate(i):
     try:
-        rightleg = open('rightleg.csv','r').read()
-        leftleg = open('leftleg.csv','r').read()
+        rightleg = open('rightleg.csv', 'r').read()
+        leftleg = open('leftleg.csv', 'r').read()
         rightlegline = rightleg.split('\n')
         leftlegline = leftleg.split('\n')
     except IOError:
@@ -24,62 +25,56 @@ def animate(i):
         print('============================')
         sys.exit()
 
-    xs = []
-    ys = []
-
-    xxs = []
-    yys = []
-
-    arr1 = []
-    arr2 = []
-
-    arr3 = []
-    arr4 = []
+    x_values = []
+    rightleg_y_values = []
+    leftleg_y_values = []
 
     for rightlegvalue in rightlegline:
         if len(rightlegvalue) > 1:
             x, y = rightlegvalue.split(',')
-            xs.append(float(x))
-            ys.append(float(y))
-            arr1.append(x)
-            arr2.append(y)
-    
-    arr1 = np.array(arr1,dtype=np.double)
-    arr2 = np.array(arr2,dtype=np.double)
+            x_values.append(x)
+            rightleg_y_values.append(y)
+
+    x_values = np.array(x_values, dtype=np.double)
+    rightleg_y_values = np.array(rightleg_y_values, dtype=np.double)
 
     for leftlegvalue in leftlegline:
         if len(leftlegvalue) > 1:
             xx, yy = leftlegvalue.split(',')
-            xxs.append(float(xx))
-            yys.append(float(yy))
-            arr3.append(xx)
-            arr4.append(yy)
+            leftleg_y_values.append(yy)
 
-    arr3 = np.array(arr3,dtype=np.double)
-    arr4 = np.array(arr4,dtype=np.double)
+    leftleg_y_values = np.array(leftleg_y_values, dtype=np.double)
 
-    Line_1 = LineString(np.column_stack((arr1, arr2)))
-    Line_2 = LineString(np.column_stack((arr3, arr4)))
+    line1 = LineString(np.column_stack((x_values, rightleg_y_values)))
+    line2 = LineString(np.column_stack((x_values, leftleg_y_values)))
 
-    intersection = Line_1.intersection(Line_2)
+    intersections = line1.intersection(line2)
+    intersection_points = []
+
+    for intersection in intersections:
+        if type(intersection) == Point:
+            intersection_points.append(intersection)
+        elif type(intersection) == LineString:
+            intersection_points.append(Point(intersection.coords[0]))
+
+    intersection_points.sort(key=(lambda point: point.x))
+    intersection_points = MultiPoint(intersection_points)
 
     ax1.clear()
-    ax1.plot(xs, ys)
-    ax1.plot(xxs, yys)
-    if intersection.geom_type == 'MultiPoint':
-        ax1.plot(*LineString(intersection).xy, 'ro')
-    elif intersection.geom_type == 'Point':
-        ax1.plot(*intersection.xy, 'go')
-
-    x, y = LineString(intersection).xy
-
+    ax1.plot(x_values, rightleg_y_values)
+    ax1.plot(x_values, leftleg_y_values)
+    if intersection_points.geom_type == 'MultiPoint':
+        ax1.plot(*LineString(intersection_points).xy, 'ro')
+    elif intersections.geom_type == 'Point':
+        ax1.plot(*intersections.xy, 'go')
 
     with open("steps.txt", "w") as o:
-        o.write((str(len(x))))
+        o.write((str(len(intersection_points))))
         o.write("\n")
 
     fig.canvas.manager.set_window_title('Knee Intersection Graph')
-    ax1.set_title("Knee Intersection Graph")    
+    ax1.set_title("Knee Intersection Graph")
+
 
 sys.tracebacklimit = 0
 ani = animation.FuncAnimation(fig, animate, interval=0)
